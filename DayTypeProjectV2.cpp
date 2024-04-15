@@ -1,43 +1,69 @@
 #include <iostream>
 #include <string>
-#include "DayType.h"
+#include "dateType.h"
 using namespace std;
 
 int main()
 {
-    string startingDay;
-    cout << "Please input the day you would like to start with:" << endl;
-    cin >> startingDay;
+	dateType date;
+	date.setDate(1, 1, 1900);
 
-    dayType day(startingDay);
+	cout << "Default constructor: ";
+	date.print();
 
-    cout << "Starting day: ";
-    day.print();
 
-    cout << "Previous day: ";
-    day.previousDay();
-    cout << day.previousDay() << endl;
+	int month, day, year;
+	cout << "You will enter your own date." << endl;
+	cout << "Month: ";
+	cin >> month;
+	cout  << "Day: ";
+	cin >> day;
+	cout  << "Year: ";
+	cin >> year;
 
-    cout << "Next day: ";
-    day.nextDay();
-    cout << day.nextDay() << endl;
+	date.setDate(month, day, year);
 
-    dayType day2("Monday");
+	cout << "Constructor: ";
+	date.print();
 
-    cout << "From constructor with parameters: " << day2.getDay() << endl;
+	cout << "Number of days passed: ";
+	cout << date.daysPassed() << endl;
+	cout << "Number of days left in the year: ";
+	cout << date.daysUntil() << endl;
 
-    cout << "After adding 3 days: ";
-    day2.addDays(3);
-    day2.print();
+	cout << "Number of days in month: ";
+	cout << date.daysInMonth(year, month) << endl;
 
-    cout << "After adding 30 days: ";
-    day2.addDays(30);
-    day2.print();
+	int days;
+	cout << "How many days in the future would you like to advance? ";
+	cin >> days;
 
-    cout << "After adding 365 days: ";
-    day2.addDays(365);
-    day2.print();
+	date.setFutureDate(days);
 
-    return 0;
+	cout << "After " << days << " days, the date will be: ";
+	date.print();
 
+	cout << "Reseting year to 2000: ";
+	year = 2000;
+	date.setDate(month, day, year);
+	cout << year << endl;
+	date.print();
+
+	cout << "Reseting month to 2: ";
+	month = 2;
+	date.setDate(month, day, year);
+	cout << month << endl;
+	date.print();
+
+	cout << "Reseting day to 29: ";
+	day = 29;
+	date.setDate(month, day, year);
+	cout << day << endl;
+	date.print();
+
+	cout << "Reseting year to 2001: ";
+	year = 2001;
+	date.setDate(month, day, year);
+	cout << year << endl;
+	date.print();
 }
